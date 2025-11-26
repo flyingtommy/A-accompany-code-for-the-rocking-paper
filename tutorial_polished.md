@@ -1,4 +1,4 @@
-# Tutorial: Reduced-Order Flexible Solid Modelling for Rocking Problems in Simulink
+<img width="903" height="34" alt="image" src="https://github.com/user-attachments/assets/95e9da15-dbc2-4a24-aaf6-556bec8c3dca" /># Tutorial: Reduced-Order Flexible Solid Modelling for Rocking Problems in Simulink
 
 ## Overview
 This tutorial provides the MATLAB codes, the Simulink models, and the necessary introductions required to run the examples presented in the companion paper. Two examples from the companion paper are covered:
@@ -15,56 +15,61 @@ The second example shows how to build a structural system with many inter-connec
 
 Readers must have a good understanding of:
 
-1. The **Craig-Bampton reduction method**  
-2. The **Floating Frame of Reference formulation**
+1. The **Craig-Bampton reduction method**.  
+2. The **Floating Frame of Reference formulation**.
+3. This well-written **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**.
 
 ### Suggested Readings
 - The companion paper, which provides an introduction to both theories.  
 - The paper **“[Coupling of Substructures for Dynamic Analyses](https://hal.science/hal-01537654v1/document)”**, which proposed the original Craig-Bampton method.  
 - The paper **“[Primer on the Craig-Bampton](https://www.vibrationdata.com/tutorials2/Primer_on_the_Craig-Bampton_Method.pdf)”**, which provides a well-written introduction to the Craig-Bampton method, including checks to verify successful reduction and other practical tips.  
 - **Chapter 5** in the book **“[Dynamics of Multibody Systems](https://www.cambridge.org/highereducation/books/dynamics-of-multibody-systems/E287DA737B6138E040AA96FC12F7D7DF#contents)”**, which proposes and elaborates on the floating frame of reference formulation.  
-- It is also recommended that the readers review this well-written MATLAB example to become familiar with the workflow of using reduced-order flexible solids in Simulink:  
-  **[MATLAB Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**
 
+### Software requirements:
+
+1. MATLAB 2023a or later version.
+2. Simulink 2023a or later version.
+3. MATLAB **[Partial Differential Equation Toolbox](https://uk.mathworks.com/products/pde.html)**.
+4. Simulink extension **[Simscape Multibody](https://uk.mathworks.com/products/simscape-multibody.html)**.
+5. OxContact library in Simscape. 
 ---
 
-## Why This Separate Documentation?
-Although MATLAB provides a great example for Craig-Bampton reduction, this separate documentation is necessary for the following reasons.
 
-### 1. Additional functionalities not included in MATLAB's example
+
+## Why This Separate Documentation?
+Although MATLAB provides the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)** for using the reduced order flexible solid, this separate documentation is necessary for the following reasons.
+
+### 1. Additional functionalities not included in the Simscape Example
 The provided codes add two important capabilities to MATLAB’s original implementation:
 
 1. **Allows retention of any desired fixed-interface modes**, whereas MATLAB’s implementation only keeps fixed-interface modes within one specific frequency range.  
-2. **Allows reconstruction of full-order deformation, strain, stress, and global displacements** (add credits to houmain, inform Manolis on this, GPT do not change this line) from Simulink simulation results.  
-   MATLAB’s original example only returns global displacements of the interface nodes.  
-   
+2. **Allows reconstruction of full-order deformation, strain, stress, and global displacements** (add credits to houmain, inform Manolis on this, GPT do not change this line) from Simulink simulation results, whereas MATLAB’s implementation only returns global displacements of the interface nodes in Simulink.
+
 The first example in this tutorial covers these functionalities.
 
 ---
 
-### 2. MATLAB’s example does not address rocking problems
-The MATLAB example is not a rocking problem and therefore does **not** provide guidance on how to use:
+### 2. The Simscape Example does not address rocking problems
+The Simscape Example is not a rocking problem and therefore does **not** provide guidance on how to use:
 
 - **OxContact elements** (an in-house toolbox for contact modelling in rocking problems)  
-- **Reduced-order flexible solids in combination with contact modelling**
+- **Reduced order flexible solids in combination with contact modelling**
 
-Both examples in this tutorial cover these aspects.
+Both examples in this tutorial address these aspects.
 
 ---
 
-### 3. MATLAB’s example assumes rigid interfaces
-The MATLAB example applies only to structural components where the interface is stiff and can safely be assumed to be rigid.
-
-However, many rocking components **do not** have interface reinforcement and therefore behave as **non-rigid interfaces**, requiring additional care.
+### 3. The Simscape Example assumes rigid interfaces
+The Simscape Example applies only to structural components where the interface is stiff and can safely be assumed to be rigid. However, rocking components **without** interface reinforcement cannot be assumed to have **rigid interfaces**, requiring additional care.
 
 The first example exclusively covers this scenario.
 
 ---
 
-### 4. MATLAB’s example involves only a few physical components
+### 4. The Simscape Example involves only a few physical components
 Civil engineering structures such as frame structures usually include many inter-connected components. Constructing such a system in Simulink — which uses the floating frame of reference formulation — requires more effort than traditional civil engineering software.
 
-The second example in this tutorial covers this in detail.
+The second example in this tutorial provides a reference case.
 
 ---
 
@@ -74,7 +79,7 @@ Despite their advantages for addressing rocking problems, the:
 - **Floating frame of reference formulation**, and  
 - **Craig-Bampton reduction method**
 
-remain relatively unfamiliar to many civil engineering engineers and researchers.
+remain relatively unfamiliar to many civil engineerin engineers and researchers.
 
 The examples in this tutorial aim to improve familiarity with these modelling techniques.
 
