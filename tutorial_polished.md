@@ -86,11 +86,11 @@ _The examples in this tutorial aim to improve familiarity with these modelling t
 
 The overall workflow is as follows:
 
-A. **Perform Craig-Bampton reduction in MATLAB**  
-B. **Extract reduced-order stiffness, mass, and damping matrices**  
-C. **Transfer the reduced-order data to the “Reduced-Order Flexible Solid” block in Simulink**, which uses the floating frame of reference formulation  
-D. **Run dynamic simulations in Simulink**  
-E. **Reconstruct full-order solutions** from the reduced simulation results  
+1. **Perform Craig-Bampton reduction in MATLAB**  
+2. **Extract reduced-order stiffness, mass, and damping matrices**  
+3. **Transfer the reduced-order data to the “Reduced-Order Flexible Solid” block in Simulink**, which uses the floating frame of reference formulation  
+4. **Run dynamic simulations in Simulink**  
+5. **Reconstruct full-order solutions** from the reduced simulation results  
 
 ---
 
@@ -104,22 +104,21 @@ Figure below shows the geometry of the column
 
 ---
 
-## Step A: Craig-Bampton Reduction in MATLAB
+## Step 1: Craig-Bampton Reduction in MATLAB
 
-### Step 1 — Define structure parameters and common properties  
+### A — Define structure parameters and common properties  
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 2 — Generate or import the geometry  
-Details can be found in this MATLAB example:  
-<https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html>
+### B — Generate or import the geometry  
+Details can be found in the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**.
 
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 3 — Mesh the component  
+### C — Mesh the component  
 This step determines the position of the interface nodes.
 
 Workflow:
@@ -134,29 +133,27 @@ The multipoint constraint is required because tetrahedral element nodes have onl
 
 ---
 
-### Step 4 — <ins>Locate nodes within the area of the feet</ins>  
+### <ins>D</ins> — Locate nodes within the area of the feet  
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 5 — <ins>Add the node positions as geometry vertices and re-mesh</ins>  
+### <ins>E</ins> — Add the node positions as geometry vertices and re-mesh 
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 6 — <ins>Apply vertex-type multipoint constraints for the interface DOFs</ins>  
+### <ins>F</ins> — Apply vertex-type multipoint constraints for the interface DOFs  
 These DOFs are retained during Craig-Bampton reduction.
 
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 7 — Check fixed-interface modes  
+### G — Check fixed-interface modes  
 Take note of the frequencies corresponding to modes you want to keep.
 
-Optional workflow:  
-Run the modal analysis within a **live script** and use the **“visualize PDE results”** task:  
-<https://uk.mathworks.com/help/pde/ug/visualizepderesults.html>
+<ins>Optionally, run the modal analysis within a **live script** and use the</ins> **[visualize PDE results task](https://uk.mathworks.com/help/pde/ug/visualizepderesults.html)** <ins> to visualize the mode shapes.</ins>
 
 (I will insert matlab code here, do not change this line GPT)
 
@@ -164,14 +161,14 @@ Run the modal analysis within a **live script** and use the **“visualize PDE r
 
 ---
 
-### Step 8 — Apply Craig-Bampton reduction  
+### H — Apply Craig-Bampton reduction  
 <ins>List the frequency ranges corresponding to the modes you want to retain.</ins>
 
 (I will insert matlab code here, do not change this line GPT)
 
 ---
 
-### Step 9 — Manually calculate the reduced-order damping matrix  
+### I — Manually calculate the reduced-order damping matrix  
 This allows assignment of different modal damping ratios to different modes.
 
 Optional:  
