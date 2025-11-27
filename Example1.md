@@ -287,8 +287,9 @@ modalresults = solve(model2,FrequencyRange=[0,3e3]); %in rad/s.
 Freq = modalresults.NaturalFrequencies;
 
 ```
-
 ![Live task to visualize mode shapes](images/ModeShapeVisulization.JPG)
+
+*Figure 1: Live task to visualize mode shapes.*
 
 ---
 
