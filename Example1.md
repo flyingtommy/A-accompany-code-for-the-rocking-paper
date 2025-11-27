@@ -14,6 +14,12 @@ This example also covers the detailed workflow, and the contents that are *not* 
 
 ---
 
+## BeB all
+Replace file
+
+---
+
+
 ## Step 1: Craig-Bampton Reduction in MATLAB
 
 ### I — Define structure parameters and common properties  
