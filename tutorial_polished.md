@@ -25,7 +25,7 @@ Readers must have a good understanding of:
 - **Chapter 5** in the book **“[Dynamics of Multibody Systems](https://www.cambridge.org/highereducation/books/dynamics-of-multibody-systems/E287DA737B6138E040AA96FC12F7D7DF#contents)”**, which proposes and elaborates on the floating frame of reference formulation.
 - This well-written **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**, which can make you familiar with the basic workflow and common functions for using the reduced order flexible solid in Simscape.
 
-*I highly recommend reviewing the theory-related materials first to build a clear conceptual understanding before moving on to the Simscape Example. Otherwise, it may be difficult to distinguish between syntax-related logic and theory-related logic, which can lead to confusion.
+📌*I highly recommend reviewing the theory-related materials first to build a clear conceptual understanding before moving on to the Simscape Example. Otherwise, it may be difficult to distinguish between syntax-related logic and theory-related logic, which can lead to confusion.
 
 ### Software Requirements:
 
