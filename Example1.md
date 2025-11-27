@@ -299,20 +299,20 @@ Freq = modalresults.NaturalFrequencies;
 ```matlab
 %% Apply CB reduction
 
-FreqRange = [0 Freq(20)+2;
-    Freq(24)+2 Freq(26)-2;
-    Freq(29)+2 Freq(31)-2;
-    Freq(35)+2 Freq(37)-2;
-    Freq(40)+2 Freq(42)-2];
+FreqRange = [0 Freq(20)+2;                      % Include the first 20 modes.
+    Freq(24)+2 Freq(26)-2;                      % Include the 25th mode. 
+    Freq(29)+2 Freq(31)-2;                      % Include the 30th mode.
+    Freq(35)+2 Freq(37)-2;                      % Include the 36th mode.
+    Freq(40)+2 Freq(42)-2];                     % Include the 41th modes.                         
 
 R = reduce(model2,"FrequencyRange",FreqRange);  % The frequency rang is in rad/s.
 
-Reduced.K = (R.K+R.K')/2;                       % Reduced stiffness matrix
-Reduced.M = (R.M+R.M')/2;                       % Reduced mass matrix
+Reduced.K = (R.K+R.K')/2;                       % Reduced stiffness matrix.
+Reduced.M = (R.M+R.M')/2;                       % Reduced mass matrix.
 Reduced.P = R.ReferenceLocations';
 
-frmPerm = zeros(numFrames,1);                   % Frame permutation vector
-dofPerm = 1:size(Reduced.K,1);                  % DOF permutation vector
+frmPerm = zeros(numFrames,1);                   % Frame permutation vector.
+dofPerm = 1:size(Reduced.K,1);                  % DOF permutation vector.
 
 %assert(size(Reduced.P,1) == numFrames);
 for i = 1:numFrames 
