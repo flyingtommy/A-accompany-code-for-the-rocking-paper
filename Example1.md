@@ -335,14 +335,39 @@ Reduced.M = Reduced.M(:,dofPerm);
 ---
 
 ### IX — Manually calculate the reduced-order damping matrix  
-This allows assignment of different modal damping ratios to different modes.
+The following code allows assignment of different modal damping ratios to different modes. Or, Simulink’s reduced order flexible solid block can automatically compute uniform modal damping  and Rayleigh damping.  
 
-Optional:  
-Simulink’s reduced-order flexible solid can automatically compute:
+```matlab
+%% Manually calculate the reduced-order damping matrix
 
-- uniform modal damping  
-- Rayleigh damping  
+MoI_Length = ones(1,8);                         % Modes of interest.
+MoI_Dr = 0.8;                                   % Modal damping ratio for the modes of interest.
+OtherModeDr = 0.8;                              % Modal damping ratio for all other modes.
+MaterialDRMatrix = [0 0 0 0 0 0 MoI_Dr*MoI_Length OtherModeDr*ones(1,length(Reduced.K)-6-length(MoI_Length))];
+MaterialDRMatrix = diag(MaterialDRMatrix);
 
-(I will insert matlab code here, do not change this line GPT)
+[V,D] = eig(Reduced.K,Reduced.M);
+[d,sortIdxs] = sort(diag(D));
+V = V(:,sortIdxs);
 
+% Due to small numerical errors, the six eigenvalues associated with the
+% rigid-body modes may not be exactly zero. To avoid numerical issues,
+% check that the first six eigenvalues are close enough to zero. Then
+% replace them with exact 0 values.
+
+assert(all(abs(d(1:6))/abs(d(7)) < 1e-9),'Error due to "zero" eigenvalues.');
+d(1:6) = 0;
+
+% Vectors of generalized masses and natural frequencies
+
+MV = Reduced.M*V;
+generalizedMasses = diag(V'*MV);
+naturalFrequencies = sqrt(d);
+
+Reduced.C = MV * diag(2*MaterialDRMatrix*naturalFrequencies./generalizedMasses) * MV';
+Reduced.C = (Reduced.C+Reduced.C')/2;
+
+Reduced.C = Reduced.C(dofPerm,:);
+Reduced.C = Reduced.C(:,dofPerm);           % % Reduced damping matrix.
+```
 ---
