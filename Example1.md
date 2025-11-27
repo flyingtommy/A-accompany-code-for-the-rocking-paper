@@ -1,10 +1,16 @@
 ## Example 1: Rocking Column with Corner Feet
 
 The first example models a **solid marble column** with four rigid corner feet standing on a high-grip, stiff support medium. The height of the corner feet is negligible.
-This example also covers the detailed workflow, and the contents that are *not* covered by the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)** start with ⭐ in this document.
+This example also covers the detailed workflow, and the contents that are *not* covered by the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)** start with ⭐ in this document. 
 
-Figure below shows the geometry of the column  
-*(⚠️insert the figure)*
+Figure 1 shows the column geometry. The column and the support media properties can be found in the companion paper.
+
+<p align="center">
+<img src="images/Example1.JPG" width="500">
+</p>
+
+*Figure 1: (a) Column geometry,(b) rigid corner feet position.*
+
 
 ---
 
