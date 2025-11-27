@@ -127,7 +127,7 @@ To improve the poor mesh quality, the following strategy is used:
 - Add these nodes as vertices to the original geometry to represent the foot.  
 - Re-mesh the updated geometry.
 - Apply vertex-type multipoint constraints.  
-### ⭐III — Mesh the geometry without the vertices of the feet.  
+### ⭐III — Mesh the geometry without the vertices of the feet  
 
 ```matlab
 % Create finite-element mesh
@@ -138,7 +138,7 @@ msh=generateMesh(model,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",
 
 ---
 
-### ⭐IV — Locate the nodes closest to the foot vertices.  
+### ⭐IV — Locate the nodes closest to the foot vertices  
 ```matlab
 % Locate the nodes closest to the foot vertices.
 
@@ -220,7 +220,7 @@ RB_surroundingNodes_coords = nodes(:,RB_surroundingNodes_Index);
 ```
 ---
 
-### ⭐V — Add these nodes as vertices to the original geometry and re-mesh.
+### ⭐V — Add these nodes as vertices to the original geometry and re-mesh
 ```matlab
 %% Actual model we use for analysis
 
@@ -242,8 +242,8 @@ structuralProperties(model2,"YoungsModulus",E, ...
 
 ---
 
-### ⭐VI — Apply vertex-type multipoint constraints.  
-These DOFs are retained during Craig-Bampton reduction.
+### ⭐VI — Apply vertex-type multipoint constraints  
+The six degrees of freedom of each rigid plane will be retained during Craig-Bampton reduction.
 
 ```matlab
 LF_surroundingVertex_Index = [1:1:size(LF_surroundingNodes_Index,1)]+12;
@@ -277,11 +277,16 @@ structuralBC(model2, ...
 ---
 
 ### VII — Check the fixed-interface modes  
-Take note of the frequencies corresponding to the modes you want to keep. To know what modes to keep, you need to run a convergence analysis with different modes until the results does not change with more modes. 
+Take note of the frequencies corresponding to the modes you intend to retain. To determine which modes to keep, perform a convergence analysis using different numbers of modes until the results no longer change with the inclusion of additional modes.
 
 ⭐Optionally, run the modal analysis within a **live script** and use the **[visualize PDE results task](https://uk.mathworks.com/help/pde/ug/visualizepderesults.html)** to visualize the mode shapes.
 
-(I will insert matlab code here, do not change this line GPT)
+```matlab
+%% Modal analysis
+modalresults = solve(model2,FrequencyRange=[0,3e3]); %in rad/s.
+Freq = modalresults.NaturalFrequencies;
+
+```
 
 *(⚠️insert the modeshape figure here)*
 
