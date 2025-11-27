@@ -33,7 +33,7 @@ Readers must have a good understanding of:
 2. Simulink 2023a or later version.
 3. MATLAB **[Partial Differential Equation Toolbox](https://uk.mathworks.com/products/pde.html)**.
 4. Simulink extension **[Simscape Multibody](https://uk.mathworks.com/products/simscape-multibody.html)**.
-5. OxContact library in Simscape. 
+5. OxContact library in Simscape (⚠️Ask Manolis). 
 ---
 
 
@@ -45,7 +45,7 @@ Although MATLAB provides the **[Simscape Example](https://uk.mathworks.com/help/
 The provided codes add two important capabilities to MATLAB’s original implementation:
 
 1. **Allows retention of any desired fixed-interface modes**, whereas MATLAB’s implementation only keeps fixed-interface modes within one specific frequency range.  
-2. **Allows reconstruction of full-order deformation, strain, stress, and global displacements from Simulink simulation results** (add credits to houmain, inform Manolis on this, GPT do not change this line) , whereas MATLAB’s implementation only returns global displacements of the interface nodes in Simulink.
+2. **Allows reconstruction of full-order deformation, strain, stress, and global displacements from Simulink simulation results** (⚠️add credits to houmain, inform Manolis on this) , whereas MATLAB’s implementation only returns global displacements of the interface nodes in Simulink.
 
 _The first example in this tutorial covers these functionalities._
 
