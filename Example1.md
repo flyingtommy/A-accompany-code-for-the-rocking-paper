@@ -234,7 +234,7 @@ end
 
 
 model2.Geometry = gm2;
-generateMesh(model2,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",Hgrad=1.2); %need to be kept the same as the msh method in model in the last section
+generateMesh(model2,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",Hgrad=1.2); 
 structuralProperties(model2,"YoungsModulus",E, ...
     "PoissonsRatio",nu, ...
     "MassDensity",rho);
@@ -289,14 +289,48 @@ Freq = modalresults.NaturalFrequencies;
 ```
 ![Live task to visualize mode shapes](images/ModeShapeVisulization.JPG)
 
-*Figure 1: Live task to visualize mode shapes.*
+*Figure 2: Live task to visualize mode shapes.*
 
 ---
 
 ### VIII — Apply Craig-Bampton reduction  
-⭐List the frequency ranges corresponding to the modes you want to retain.
+⭐List the frequency ranges corresponding to the modes you want to retain, as shown in the following code.
 
-(I will insert matlab code here, do not change this line GPT)
+```matlab
+%% Apply CB reduction
+
+FreqRange = [0 Freq(20)+2;
+    Freq(24)+2 Freq(26)-2;
+    Freq(29)+2 Freq(31)-2;
+    Freq(35)+2 Freq(37)-2;
+    Freq(40)+2 Freq(42)-2];
+
+R = reduce(model2,"FrequencyRange",FreqRange);  % The frequency rang is in rad/s.
+
+Reduced.K = (R.K+R.K')/2;                       % Reduced stiffness matrix
+Reduced.M = (R.M+R.M')/2;                       % Reduced mass matrix
+Reduced.P = R.ReferenceLocations';
+
+frmPerm = zeros(numFrames,1);                   % Frame permutation vector
+dofPerm = 1:size(Reduced.K,1);                  % DOF permutation vector
+
+%assert(size(Reduced.P,1) == numFrames);
+for i = 1:numFrames 
+    for j = 1:numFrames 
+        if isequal(Reduced.P(j,:),origins(i,:))
+            frmPerm(i) = j;
+            dofPerm(6*(i-1)+(1:6)) = 6*(j-1)+(1:6);
+            continue;
+        end
+    end
+end
+
+Reduced.P = Reduced.P(frmPerm,:);
+Reduced.K = Reduced.K(dofPerm,:);
+Reduced.K = Reduced.K(:,dofPerm);
+Reduced.M = Reduced.M(dofPerm,:);
+Reduced.M = Reduced.M(:,dofPerm);
+```
 
 ---
 
