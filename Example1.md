@@ -368,6 +368,6 @@ Reduced.C = MV * diag(2*MaterialDRMatrix*naturalFrequencies./generalizedMasses) 
 Reduced.C = (Reduced.C+Reduced.C')/2;
 
 Reduced.C = Reduced.C(dofPerm,:);
-Reduced.C = Reduced.C(:,dofPerm);           % % Reduced damping matrix.
+Reduced.C = Reduced.C(:,dofPerm);             % Reduced damping matrix.
 ```
 ---
