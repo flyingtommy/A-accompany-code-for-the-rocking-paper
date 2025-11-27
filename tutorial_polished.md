@@ -25,7 +25,7 @@ Readers must have a good understanding of:
 - **Chapter 5** in the book **“[Dynamics of Multibody Systems](https://www.cambridge.org/highereducation/books/dynamics-of-multibody-systems/E287DA737B6138E040AA96FC12F7D7DF#contents)”**, which proposes and elaborates on the floating frame of reference formulation.
 - This well-written **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**, which can make you familiar with the basic workflow and common functions for using the reduced order flexible solid in Simscape.
 
-### Software requirements:
+### Software Requirements:
 
 1. MATLAB 2023a or later version.
 2. Simulink 2023a or later version.
