@@ -20,7 +20,7 @@ Readers must have a good understanding of:
 
 ### Suggested Readings
 - The companion paper, which provides an introduction to both theories.  
-- The paper **“[Coupling of Substructures for Dynamic Analyses](https://hal.science/hal-01537654v1/document)”**, which proposed the original Craig-Bampton method.  
+- The paper **“[Coupling of Substructures for Dynamic Analyses](https://hal.science/hal-01537654v1/document)”**, which orginally proposed the Craig-Bampton method.  
 - The paper **“[Primer on the Craig-Bampton](https://www.vibrationdata.com/tutorials2/Primer_on_the_Craig-Bampton_Method.pdf)”**, which provides a well-written introduction to the Craig-Bampton method, including checks to verify successful reduction and other practical tips.  
 - **Chapter 5** in the book **“[Dynamics of Multibody Systems](https://www.cambridge.org/highereducation/books/dynamics-of-multibody-systems/E287DA737B6138E040AA96FC12F7D7DF#contents)”**, which proposes and elaborates on the floating frame of reference formulation.
 - This well-written **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**, which can make you familiar with the basic workflow and common functions for using the reduced order flexible solid in Simscape.
