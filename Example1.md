@@ -119,37 +119,161 @@ structuralProperties(model,"YoungsModulus",E, ...
 ```
 
 ---
+Because a node in a tetrahedral element possesses only three degrees of freedom, whereas Simulink requires interface nodes to have six degrees of freedom, a multipoint kinematic constraint is necessary to construct a rigid plane with six degrees of freedom from a selected set of tetrahedral element nodes. For components with a rigid interface (as in the Simscape Example), a face-type multipoint constraint—which enforces the entire interface to behave as a single rigid plane with six degrees of freedom—is sufficient. However, in our case, only the four contact feet are rigid. Consequently, for each foot, a vertex-type multipoint constraint must be applied to couple the motion of the nodes within the foot region. The simplest approach is to add the foot vertices directly into the geometry and apply the vertex-type multipoint constraint. However, this leads to poor mesh quality in the vicinity of each foot due to their rectangular shape. 
 
-### III — Mesh the component  
-Because the node of a tetrahedral element
+To improve the poor mesh quality, the following strategy is used:
+- Mesh the geometry without the vertices of the feet.  
+- Locate the nodes closest to the foot vertices.
+- Add these nodes as vertices to the original geometry to represent the foot.  
+- Re-mesh the updated geometry.
+- Apply vertex-type multipoint constraints.  
+### ⭐III — Mesh the component  
 
-Workflow:
-- Mesh once to identify the nearby vertex locations  
-- Add the necessary vertices  
-- Re-mesh  
-- Apply vertex-type multipoint constraints  
+```matlab
+% Create finite-element mesh
 
-The multipoint constraint is required because tetrahedral element nodes have only **three DOFs**, while an interface in Simulink must have **six DOFs**. The multipoint constraint forms a small rigid plane that provides 6 DOFs at the interface.
-
-(I will insert matlab code here, do not change this line GPT)
-
----
-
-### ⭐IV — Locate nodes within the area of the feet  
-(I will insert matlab code here, do not change this line GPT)
+hmax = 0.2;
+msh=generateMesh(model,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",Hgrad=1.2);
+```
 
 ---
 
-### ⭐V — Add the node positions as geometry vertices and re-mesh 
-(I will insert matlab code here, do not change this line GPT)
+### ⭐IV — Locate the nodes closest to the foot vertices.  
+```matlab
+% Locate the nodes closest to the foot vertices.
+
+nodes = msh.Nodes;
+elements = msh.Elements;
+
+LF_Node_Index = 9;
+RF_Node_Index = 10;
+LB_Node_Index = 11;
+RB_Node_Index = 12;
+
+
+ii = 1;                                                         % Find the index of the elements that include the node corresponding to the center of the LF corner.
+for i = 1:1:size(msh.Elements,2)
+    if sum(find (msh.Elements(:,i) == LF_Node_Index)) ~= 0
+        ElemInLF(ii) = i;
+        ii = ii+1;
+    else
+    end
+end
+
+ii = 1;                                                         % Find the index of the elements that include the node corresponding to the center of the RF corner.
+for i = 1:1:size(msh.Elements,2)
+    if sum(find (msh.Elements(:,i) == RF_Node_Index)) ~= 0
+        ElemInRF(ii) = i;
+        ii = ii+1;
+    else
+    end
+end
+
+ii = 1;                                                         % Find the index of the elements that include the node corresponding to the center of the LB corner.
+for i = 1:1:size(msh.Elements,2)
+    if sum(find (msh.Elements(:,i) == LB_Node_Index)) ~= 0
+        ElemInLB(ii) = i;
+        ii = ii+1;
+    else
+    end
+end
+
+ii = 1;                                                         % Find the index of the elements that include the node corresponding to the center of the RB corner.
+for i = 1:1:size(msh.Elements,2)
+    if sum(find (msh.Elements(:,i) == RB_Node_Index)) ~= 0
+        ElemInRB(ii) = i;
+        ii = ii+1;
+    else
+    end
+end
+
+
+
+Ele_link_LF_index = elements(:,ElemInLF);                        % Node index of elements that contains the reference node.
+Ele_link_LF_index2 = Ele_link_LF_index(1:4,:);                   % Only include the element vertex. The others are midpoint node.
+adc = unique(Ele_link_LF_index2);                                % Get rid of the repeated element vertex.
+adc(find(adc == LF_Node_Index)) = [];                            % Get rid of the reference node.
+LF_surroundingNodes_Index = adc(find(nodes(3,adc)==0));
+LF_surroundingNodes_coords = nodes(:,LF_surroundingNodes_Index); % Find the node coordinates that is one element away from the reference node. This will be used to add vertex to the geometry in the next step.
+
+Ele_link_RF_index = elements(:,ElemInRF);
+Ele_link_RF_index2 = Ele_link_RF_index(1:4,:);
+adc = unique(Ele_link_RF_index2);
+adc(find(adc == RF_Node_Index)) = [];
+RF_surroundingNodes_Index = adc(find(nodes(3,adc)==0));
+RF_surroundingNodes_coords = nodes(:,RF_surroundingNodes_Index);
+
+Ele_link_LB_index = elements(:,ElemInLB);
+Ele_link_LB_index2 = Ele_link_LB_index(1:4,:);
+adc = unique(Ele_link_LB_index2);
+adc(find(adc == LB_Node_Index)) = [];
+LB_surroundingNodes_Index = adc(find(nodes(3,adc)==0));
+LB_surroundingNodes_coords = nodes(:,LB_surroundingNodes_Index);
+
+Ele_link_RB_index = elements(:,ElemInRB);
+Ele_link_RB_index2 = Ele_link_RB_index(1:4,:);
+adc = unique(Ele_link_RB_index2);
+adc(find(adc == RB_Node_Index)) = [];
+RB_surroundingNodes_Index = adc(find(nodes(3,adc)==0));
+RB_surroundingNodes_coords = nodes(:,RB_surroundingNodes_Index);
+
+```
+---
+
+### ⭐V — Add these nodes as vertices to the original geometry and re-mesh
+```matlab
+%% Actual model we use for analysis
+
+model2 = createpde("structural","modal-solid");
+gm2 = multicuboid(Width,Depth,L_te);
+addVertex(gm2,"Coordinates",origins);
+addVertex(gm2,"Coordinates",[LF_surroundingNodes_coords';RF_surroundingNodes_coords';LB_surroundingNodes_coords';RB_surroundingNodes_coords']);
+for i = 1:1:size(PoI,1)
+    addVertex(gm2,"Coordinates",PoI(i,:));
+end
+
+
+model2.Geometry = gm2;
+generateMesh(model2,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",Hgrad=1.2); %need to be kept the same as the msh method in model in the last section
+structuralProperties(model2,"YoungsModulus",E, ...
+    "PoissonsRatio",nu, ...
+    "MassDensity",rho);
+```
 
 ---
 
-### ⭐VI — Apply vertex-type multipoint constraints for the interface DOFs  
+### ⭐VI — Apply vertex-type multipoint constraints.  
 These DOFs are retained during Craig-Bampton reduction.
 
-(I will insert matlab code here, do not change this line GPT)
+```matlab
+LF_surroundingVertex_Index = [1:1:size(LF_surroundingNodes_Index,1)]+12;
+RF_surroundingVertex_Index = [size(LF_surroundingNodes_Index,1)+1:1:size(RF_surroundingNodes_Index,1)+size(LF_surroundingNodes_Index,1)]+12;
+LB_surroundingVertex_Index = [size(RF_surroundingNodes_Index,1)+size(LF_surroundingNodes_Index,1)+1:1:size(RF_surroundingNodes_Index,1)+size(LF_surroundingNodes_Index,1)+size(LB_surroundingNodes_Index,1)]+12;
+RB_surroundingVertex_Index = [size(RF_surroundingNodes_Index,1)+size(LF_surroundingNodes_Index,1)+size(LB_surroundingNodes_Index,1)+1:1:size(RF_surroundingNodes_Index,1)+size(LF_surroundingNodes_Index,1)+size(LB_surroundingNodes_Index,1)+size(RB_surroundingNodes_Index,1)]+12;
+LF_surroundingVertex_Index = [9 LF_surroundingVertex_Index];
+RF_surroundingVertex_Index = [10 RF_surroundingVertex_Index];
+LB_surroundingVertex_Index = [11 LB_surroundingVertex_Index];
+RB_surroundingVertex_Index = [12 RB_surroundingVertex_Index];
+structuralBC(model2, ...
+    'Vertex',LF_surroundingVertex_Index, ...
+    'Constraint','multipoint', ...
+    'Reference',origins(1,:));
 
+structuralBC(model2, ...
+    'Vertex',RF_surroundingVertex_Index, ...
+    'Constraint','multipoint', ...
+    'Reference',origins(2,:));
+
+structuralBC(model2, ...
+    'Vertex',LB_surroundingVertex_Index, ...
+    'Constraint','multipoint', ...
+    'Reference',origins(3,:));
+
+structuralBC(model2, ...
+    'Vertex',RB_surroundingVertex_Index, ...
+    'Constraint','multipoint', ...
+    'Reference',origins(4,:));
+```
 ---
 
 ### VII — Check the fixed-interface modes  
