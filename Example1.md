@@ -119,7 +119,7 @@ structuralProperties(model,"YoungsModulus",E, ...
 ```
 
 ---
-Because a node in a tetrahedral element possesses only three degrees of freedom, whereas Simulink requires interface nodes to have six degrees of freedom, a multipoint kinematic constraint is necessary to construct a rigid plane with six degrees of freedom from a selected set of tetrahedral element nodes. For components with a rigid interface (as in the Simscape Example), a face-type multipoint constraint—which enforces the entire interface to behave as a single rigid plane with six degrees of freedom—is sufficient. However, in our case, only the four contact feet are rigid. Consequently, for each foot, a vertex-type multipoint constraint must be applied to couple the motion of the nodes within the foot region. The simplest approach is to add the foot vertices directly into the geometry and apply the vertex-type multipoint constraint. However, this leads to poor mesh quality in the vicinity of each foot due to their rectangular shape. 
+📌Because a node in a tetrahedral element possesses only three degrees of freedom, whereas Simulink requires interface nodes to have six degrees of freedom, a multipoint kinematic constraint is necessary to construct a rigid plane with six degrees of freedom from a selected set of tetrahedral element nodes. For components with a rigid interface (as in the Simscape Example), a face-type multipoint constraint—which enforces the entire interface to behave as a single rigid plane with six degrees of freedom—is sufficient. However, in our case, only the four contact feet are rigid. Consequently, for each foot, a vertex-type multipoint constraint must be applied to couple the motion of the nodes within the foot region. The simplest approach is to add the foot vertices directly into the geometry and apply the vertex-type multipoint constraint. However, this leads to poor mesh quality in the vicinity of each foot due to their rectangular shape. 
 
 To improve the poor mesh quality, the following strategy is used:
 - Mesh the geometry without the vertices of the feet.  
@@ -127,7 +127,7 @@ To improve the poor mesh quality, the following strategy is used:
 - Add these nodes as vertices to the original geometry to represent the foot.  
 - Re-mesh the updated geometry.
 - Apply vertex-type multipoint constraints.  
-### ⭐III — Mesh the component  
+### ⭐III — Mesh the geometry without the vertices of the feet.  
 
 ```matlab
 % Create finite-element mesh
@@ -220,7 +220,7 @@ RB_surroundingNodes_coords = nodes(:,RB_surroundingNodes_Index);
 ```
 ---
 
-### ⭐V — Add these nodes as vertices to the original geometry and re-mesh
+### ⭐V — Add these nodes as vertices to the original geometry and re-mesh.
 ```matlab
 %% Actual model we use for analysis
 
