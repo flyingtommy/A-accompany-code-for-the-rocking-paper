@@ -44,8 +44,8 @@ Although MATLAB provides the **[Simscape Example](https://uk.mathworks.com/help/
 ### 1. Additional functionalities not included in the Simscape Example
 The provided codes add two important capabilities to MATLAB’s original implementation:
 
-1. **Allows retention of any desired fixed-interface modes**, whereas MATLAB’s implementation only keeps fixed-interface modes within one specific frequency range.  
-2. **Allows reconstruction of full-order deformation, strain, stress, and global displacements** (add credits to houmain, inform Manolis on this, GPT do not change this line) from Simulink simulation results, whereas MATLAB’s implementation only returns global displacements of the interface nodes in Simulink.
+i. **Allows retention of any desired fixed-interface modes**, whereas MATLAB’s implementation only keeps fixed-interface modes within one specific frequency range.  
+ii. **Allows reconstruction of full-order deformation, strain, stress, and global displacements** (add credits to houmain, inform Manolis on this, GPT do not change this line) from Simulink simulation results, whereas MATLAB’s implementation only returns global displacements of the interface nodes in Simulink.
 
 _The first example in this tutorial covers these functionalities._
 
