@@ -442,6 +442,9 @@ load('ColumnResults.mat');
 filename = ['Column-Results-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat'];
 save(filename,'SimulationMetadata','logsout','xout');   % Save simulation results.
 ```
+---
+
+## 🚩 Step 3: Reconstruct the Full Order Solutions
 
 
 
