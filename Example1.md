@@ -17,6 +17,8 @@ This example also covers the detailed workflow, and the contents that are *not* 
 ## Before all
 Replace the original craigBamptonImpl.m with the [modified version](./craigBamptonImpl.m). You should find the file at path like D:\MATLAB\R2023a\toolbox\pde\+pde\@StructuralModel. If you want to keep the original craigBamptonImpl.m, rename it to something else then put the [modified version](./craigBamptonImpl.m) to the location. 
 
+This modified Craig-Bampton implementation allows you to retain any desired fixed-interface modes, whereas the original implementation only allows to retain modes within one specific frequency range. Step 1. VIII in this example demonstrates how to use this implementation.
+
 ---
 
 
