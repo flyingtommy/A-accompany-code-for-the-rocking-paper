@@ -413,13 +413,13 @@ For example, **Figure 4** shows the block of the reduced order flexible solid fo
 
 *Figure 4: The fields in the reduced order flexible block are defined after **Step 1**.*
 
-
+Run the following code to perform simulation. 
 
 ```matlab
 % Define simulation parameters
 
 InitialOffset = 8;                                      % Initial time length of zero input excitation for the states to reach static equilibrium.                   
-Cc = 8 + InitialOffset;                                 % In addition to time length of the excitation, how long you want the simulation to run.
+Cc = 8 + InitialOffset;                                 % In addition to the time length of the excitation, how long you want the simulation to run.
 t_end =Cc+2*pi/omegag;                                  % Total simulation time.
 
 freqRatio = 3;                          
