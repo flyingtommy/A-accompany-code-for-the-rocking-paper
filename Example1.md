@@ -302,7 +302,7 @@ Take note of the frequencies corresponding to the modes you intend to retain. To
 
 ```matlab
 %% Modal analysis
-modalresults = solve(model2,FrequencyRange=[0,3e3]); %in rad/s.
+modalresults = solve(model2,FrequencyRange=[0,5e3]); %in rad/s.
 Freq = modalresults.NaturalFrequencies;
 
 ```
@@ -322,7 +322,9 @@ FreqRange = [0 Freq(20)+2;                      % Include the first 20 modes.
     Freq(24)+2 Freq(26)-2;                      % Include the 25th mode. 
     Freq(29)+2 Freq(31)-2;                      % Include the 30th mode.
     Freq(35)+2 Freq(37)-2;                      % Include the 36th mode.
-    Freq(40)+2 Freq(42)-2];                     % Include the 41th mode.                         
+    Freq(40)+2 Freq(42)-2;                      % Include the 41th mode.
+    Freq(50)+2 Freq(52)-2;                      % Include the 51th mode.
+    Freq(57)+2 Freq(59)-0.2];                   % Include the 58th mode.                         
 
 R = reduce(model2,"FrequencyRange",FreqRange);  % The frequency rang is in rad/s.
 
