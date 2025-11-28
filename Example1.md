@@ -253,6 +253,10 @@ structuralProperties(model2,"YoungsModulus",E, ...
 ```
 **Figure 2** shows the final meshed column.
 
+![meshed column](images/Structure3.JPG)
+
+*Figure 2: Live task to visualize mode shapes.*
+
 ---
 
 ### ⭐VI — Apply vertex-type multipoint constraints  
