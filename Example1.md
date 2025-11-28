@@ -392,7 +392,7 @@ Reduced.C = Reduced.C(dofPerm,:);
 Reduced.C = Reduced.C(:,dofPerm);             % Reduced damping matrix.
 ```
 
-### 🔟 Save variables needed for the full order reconstruction  
+### ⭐🔟 Save variables needed for the full order reconstruction  
 ```matlab
 %% Save variables needed for the full order reconstruction 
 
