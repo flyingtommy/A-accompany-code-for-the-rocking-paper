@@ -396,22 +396,14 @@ Reduced.C = Reduced.C(:,dofPerm);             % Reduced damping matrix.
 ```matlab
 %% Save variables needed for the full order reconstruction 
 
-filename = 'Reconstruction-26Modes.mat';
+filename = 'Column-Reconstruction-26Modes.mat';
 save(filename,'PoI','R','Reduced','model2');
 
 ```
 ---
 ## 🚩 Step 2: Run Simulation in Simulink
 
-### 1️⃣ Define simulation parameters  
-
-
-
-
-
-### 1️⃣ Define simulation parameters  
-
-After **Step 1**, do not clear anything in the MATLAB workspace and open the Example_1_Simu.slx in Simulink. Check the parameters in each block, and you should find they are defined already in the MATLAB workspace. 
+After **Step 1**, **do not** clear anything in the MATLAB workspace and open the Example_1_Simu.slx in Simulink. Check the parameters in each block, and you should find they are defined already in the MATLAB workspace. 
 
 For example, **Figure 4** shows the block of the reduced order flexible solid for modelling the column, and you should find the required fields of Origins, Stiffness Matrix, Mass Matrix, and Damping Matrix are defined in variables Reduced.P, Reduced.K, Reduced.M, and Reduced.C respectively.
 
@@ -420,3 +412,38 @@ For example, **Figure 4** shows the block of the reduced order flexible solid fo
 </p>
 
 *Figure 4: The fields in the reduced order flexible block are defined after **Step 1**.*
+
+
+
+```matlab
+% Define simulation parameters
+
+InitialOffset = 8;                                      % Initial time length of zero input excitation for the states to reach static equilibrium.                   
+Cc = 8 + InitialOffset;                                 % In addition to time length of the excitation, how long you want the simulation to run.
+t_end =Cc+2*pi/omegag;                                  % Total simulation time.
+
+freqRatio = 3;                          
+omegag = p*freqRatio;                                   % Angular frequency of the input single-cylce pulse.                                       
+AmpRatio = 1.2;
+Ag = -AmpRatio*g*tan(alphacg);                          % Amplitude of the input single-cycle pulse.
+gamma=0;                                                % Angle of attack in rads of the input single-cycle pulse.
+
+
+% Solver tolerance
+
+relTol = 1e-5;                                          % Solver relative tolerance.
+absTol = 1e-5;                                          % Solver absolute tolerance.
+
+% Start simulation 
+set_param('Example_1_Simu','LoadInitialState','off')    % No initial states provided.
+tic;                                                    % Start timing the simulation.
+sim('Example_1_Simu.slx');                              % Run the simulink model.
+toc;                                                    % Stop timing the simulation.
+load('ColumnResults.mat');                             
+filename = ['Column-Results-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat'];
+save(filename,'SimulationMetadata','logsout','xout');   % Save simulation results.
+```
+
+
+
+
