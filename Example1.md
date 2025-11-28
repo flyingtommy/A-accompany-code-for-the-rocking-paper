@@ -85,7 +85,7 @@ zc = 1*(hc/2 - (maS)*g/(Ksupport_total));                   % Initial deformatio
 ---
 
 ### II — Generate or import the geometry  
-Details can be found in the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**.
+More details about how to generate and import complex geometry can be found in the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)**.
 
 ```matlab
 %% Generate geometry
