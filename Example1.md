@@ -354,7 +354,7 @@ Reduced.M = Reduced.M(:,dofPerm);
 ---
 
 ### IX — Manually calculate the reduced-order damping matrix  
-The following code allows assignment of different modal damping ratios to different modes. Or, Simulink’s reduced order flexible solid block can automatically compute uniform modal damping  and Rayleigh damping.  
+The following code allows assignment of different modal damping ratios to different modes. Or, Simulink’s reduced order flexible solid block can automatically compute uniform modal damping  matrix and Rayleigh damping matrix for you.  
 
 ```matlab
 %% Manually calculate the reduced-order damping matrix
