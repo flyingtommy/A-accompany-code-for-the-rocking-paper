@@ -9,7 +9,7 @@ This example also covers the detailed workflow, and the contents that are *not* 
 <img src="images/Example1.JPG" width="500">
 </p>
 
-*Figure 1: (a) Column geometry, (b) rigid corner feet position.*
+*Figure 1: (a) Schematic drawing, (b) rigid corner feet position.*
 
 
 ---
