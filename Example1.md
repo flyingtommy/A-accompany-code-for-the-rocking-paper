@@ -391,6 +391,12 @@ Reduced.C = Reduced.C(:,dofPerm);             % Reduced damping matrix.
 ```
 ---
 ## 🚩 Step 2: Run Simulation in Simulink
-After **Step 1**, do not clear anything in the MATLAB workspace and open the Example_1_Simu.slx in Simulink. Check the parameters in each block, and you should find they are defined already in the MATLAB workspace. For example, **Figure 4** shows the block of the reduced order flexible solid for modelling the column, and you should find the required fields of Origins, Stiffness Matrix, Mass Matrix, and Damping Matrix are defined in variables Reduced.P, Reduced.K, Reduced.M, and Reduced.C respectively.
+After **Step 1**, do not clear anything in the MATLAB workspace and open the Example_1_Simu.slx in Simulink. Check the parameters in each block, and you should find they are defined already in the MATLAB workspace. 
 
-![ReducedBlock](images/ReducedBlock.JPG)
+For example, **Figure 4** shows the block of the reduced order flexible solid for modelling the column, and you should find the required fields of Origins, Stiffness Matrix, Mass Matrix, and Damping Matrix are defined in variables Reduced.P, Reduced.K, Reduced.M, and Reduced.C respectively.
+
+<p align="center">
+<img src="images/ReducedBlock.JPG" width="500">
+</p>
+
+*Figure 4: The fields in the reduced order flexible block are defined after **Step 1**.*
