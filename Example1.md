@@ -14,8 +14,8 @@ This example also covers the detailed workflow, and the contents that are *not* 
 
 ---
 
-## BeB all
-Replace file
+## Before all
+Replace the original craigBamptonImpl.m with the [modified version](./craigBamptonImpl.m). You should find the file at path like D:\MATLAB\R2023a\toolbox\pde\+pde\@StructuralModel. If you want to keep the original craigBamptonImpl.m, rename to something else then put the [modified version](./craigBamptonImpl.m) to the location. 
 
 ---
 
