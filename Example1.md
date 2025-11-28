@@ -320,7 +320,7 @@ FreqRange = [0 Freq(20)+2;                      % Include the first 20 modes.
     Freq(24)+2 Freq(26)-2;                      % Include the 25th mode. 
     Freq(29)+2 Freq(31)-2;                      % Include the 30th mode.
     Freq(35)+2 Freq(37)-2;                      % Include the 36th mode.
-    Freq(40)+2 Freq(42)-2];                     % Include the 41th modes.                         
+    Freq(40)+2 Freq(42)-2];                     % Include the 41th mode.                         
 
 R = reduce(model2,"FrequencyRange",FreqRange);  % The frequency rang is in rad/s.
 
