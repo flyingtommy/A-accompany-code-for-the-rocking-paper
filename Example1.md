@@ -255,7 +255,7 @@ structuralProperties(model2,"YoungsModulus",E, ...
 
 ![meshed column](images/Structure3.jpg)
 
-*Figure 2: (a) Finiteelement representation of the column and (b) Rigid corner feet on bottom surface shown in deep blue*
+*Figure 2: (a) Finite element representation of the column and (b) Rigid corner feet on bottom surface shown in deep blue*
 
 ---
 
