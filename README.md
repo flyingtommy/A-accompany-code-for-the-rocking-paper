@@ -1,7 +1,7 @@
 # Tutorial: Reduced Order Flexible Solid Modelling for Rocking Problems in Simulink
 
 ## 🌟Overview
-This tutorial provides the MATLAB codes, the Simulink models, and the necessary introductions required to run the examples presented in the companion paper. Two examples from the companion paper are covered:
+This tutorial provides the MATLAB codes, the Simulink models, and the necessary introductions to run the examples presented in the companion paper. Two examples from the companion paper are covered:
 
 1. A realistic column-like structure  
 2. A scaled frame structure used in a physical experiment  
