@@ -38,7 +38,7 @@ Readers must have a good understanding of:
 
 
 ## 🌟Why This Separate Documentation?
-Although MATLAB provides the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)** for using the reduced order flexible solid, this separate documentation is necessary for the following reasons.
+Although MATLAB provides the **[Simscape Example](https://uk.mathworks.com/help/sm/ug/model-excavator-dipper-arm.html)** for using the reduced order flexible solid, this separate documentation is necessary for the following reasons:
 
 ### 1. Additional functionalities not included in the Simscape Example
 The provided codes add two important capabilities to MATLAB’s original implementation (2025a verision):
