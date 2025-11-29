@@ -95,7 +95,7 @@ The overall workflow is as follows:
 
 ## 🌟List of Examples 
 - Example 1: [Rocking Column with Corner Feet](./Example1.md)
-- Example 2: Rocking Frame Experiment
+- Example 2: [Rocking Frame Experiment](./Example2.md)
 
 
 
