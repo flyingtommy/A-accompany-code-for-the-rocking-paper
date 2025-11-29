@@ -91,10 +91,10 @@ The overall workflow is as follows:
 1. **Perform Craig-Bampton reduction in MATLAB**  
 2. **Extract reduced-order stiffness, mass, and damping matrices**  
 3. **Transfer the reduced-order data to the “Reduced Order Flexible Solid” block in Simulink**, which uses the floating frame of reference formulation  
-4. **Run dynamic simulations in Simulink**  
+4. **Run simulations in Simulink**  
 5. **Reconstruct full-order solutions** from the reduced simulation results  
 
 ---
 
-## 🌟Example 1: Rocking Column with Corner Feet
-[Link text](./Example1.md)
+## 🌟[Example 1](./Example1.md): Rocking Column with Corner Feet 
+
