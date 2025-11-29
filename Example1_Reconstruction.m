@@ -53,7 +53,7 @@ segment{end,1} = round((length(t)-startId)*(segNum-1)/segNum)+startId+1:length(t
 
 
 
-% Reconstruction the full order solutions
+% Reconstruct the full order solutions
 
 for abcd = 1:1: size(segment,1)                                 % Post-process one piece of time steps during each loop.
     Interval = segment{abcd,1};
@@ -91,3 +91,4 @@ end
 
 filename4 = ['Column-Stress-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat']; 
 save(filename4,'time','StressZZ','NodePosition','RTrom');
+
