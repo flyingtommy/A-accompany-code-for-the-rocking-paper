@@ -3,7 +3,7 @@
 ## 🌟Overview
 This tutorial provides the MATLAB codes, the Simulink models, and the necessary introductions to run the examples presented in the companion paper. Two examples from the companion paper are covered:
 
-1. A realistic column-like structure  
+1. A realistic column-like structure ([Example 1](./Example1.md))
 2. A scaled frame structure used in a physical experiment  
 
 The first example demonstrates how to use MATLAB and Simulink to conduct reduced-order analysis for rocking problems.  
