@@ -141,7 +141,7 @@ To improve the poor mesh quality, the following strategy is used:
 - Add these nodes as vertices to the original geometry to represent the foot.  
 - Re-mesh the updated geometry.
 - Apply vertex-type multipoint constraints.  
-### ⭐3️⃣ Mesh the geometry without the vertices of the feet  
+### 3️⃣⭐ Mesh the geometry without the vertices of the feet  
 
 ```matlab
 % Create finite-element mesh
