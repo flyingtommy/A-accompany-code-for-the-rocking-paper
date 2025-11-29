@@ -72,7 +72,7 @@ _The second example in this tutorial provides a reference case._
 ---
 
 ### 5. Craig-Bampton and FFR are relatively unfamiliar in civil engineering
-Despite their advantages for addressing rocking problems, the:
+Despite their potential advantages for addressing rocking problems, the:
 
 - **Floating frame of reference formulation**, and  
 - **Craig-Bampton reduction method**
