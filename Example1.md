@@ -438,7 +438,10 @@ set_param('Example_1_Simu','LoadInitialState','off')    % No initial states prov
 tic;                                                    % Start timing the simulation.
 sim('Example_1_Simu.slx');                              % Run the simulink model.
 toc;                                                    % Stop timing the simulation.
-load('ColumnResults.mat');                             
+load('ColumnResults.mat');
+
+% Save the simulation results
+                             
 filename = ['Column-Results-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat'];
 save(filename,'SimulationMetadata','logsout','xout');   % Save simulation results.
 ```
@@ -529,7 +532,7 @@ for abcd = 1:1: size(segment,1)                                 % Post-process o
 
 
     % strain = evaluateStrain(RTrom);
-    stress = evaluateStress(RTrom);                             % Evaluate stress.
+    stress = evaluateStress(RTrom);                             % Evaluate the stress.
     time(1,Interval-startId+1) = tlist;
     for aq = 1:1:length(NodeIndex)
         StressZZ(aq,Interval-startId+1) = stress.zz(NodeIndex(aq),:);
@@ -540,6 +543,9 @@ for abcd = 1:1: size(segment,1)                                 % Post-process o
         StressYZ(aq,Interval-startId+1) = stress.yz(NodeIndex(aq),:);
     end
 end
+
+% Save the reconstruction results
+
 filename4 = ['Column-Stress-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat']; 
 save(filename4,'time','StressZZ','NodePosition','RTrom');
 ```
