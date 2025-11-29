@@ -453,7 +453,7 @@ save(filename,'SimulationMetadata','logsout','xout');   % Save simulation result
 
 After running the simulation, the datasets **`logsout`** and **`xout`** contain the information required for reconstruction. The **`logsout`** dataset stores the global solution of the rigid-body reference DoFs, which is necessary for computing global displacements. The **`xout`** dataset stores the solution of all system states, including those of the reduced order flexible solid, which are required for calculating deformation, strain, and stress. To inspect the contents of each dataset, open them in MATLAB and check the `BlockPath` entries.
 
-However, **`xout` does not include the state solution of the DoFs defining the rigid-body reference**, and this information must be added during reconstruction. The following code handles this and reconstructs the full-order stress solution.
+However, **`xout` does not include the local state solution of the DoFs defining the rigid-body reference**, and this information must be added during reconstruction. The following code handles this and reconstructs the full-order stress solution.
 
 
 
