@@ -445,6 +445,8 @@ load('ColumnResults.mat');
 filename = ['Column-Results-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat'];
 save(filename,'SimulationMetadata','logsout','xout');   % Save simulation results.
 ```
+Note: If you want to skip the initial time offset for reaching static equilibrium rather than running it every time, you can first run a simulation to achieve static equilibrium, save all the states then load them as the initial states in Simulink when running actual simulations. I have a code for doing this, if requested by many I will upload it.  
+
 ---
 
 ## 🚩 Step 3: Reconstruct the Full Order Solutions
