@@ -96,5 +96,4 @@ The overall workflow is as follows:
 
 ---
 
-## 🌟[Example 1](./Example1.md): Rocking Column with Corner Feet 
 
