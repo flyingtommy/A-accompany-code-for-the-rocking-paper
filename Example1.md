@@ -152,7 +152,7 @@ msh=generateMesh(model,"Hface",{1,0.06,2,0.2},Hmax=hmax,GeometricOrder="linear",
 
 ---
 
-### ⭐4️⃣ Locate the nodes closest to the foot vertices  
+### 4️⃣⭐ Locate the nodes closest to the foot vertices  
 ```matlab
 % Locate the nodes closest to the foot vertices.
 
@@ -234,7 +234,7 @@ RB_surroundingNodes_coords = nodes(:,RB_surroundingNodes_Index);
 ```
 ---
 
-### ⭐5️⃣ Add these nodes as vertices to the original geometry and re-mesh
+### 5️⃣⭐ Add these nodes as vertices to the original geometry and re-mesh
 ```matlab
 %% Actual model we use for analysis
 
@@ -261,7 +261,7 @@ structuralProperties(model2,"YoungsModulus",E, ...
 
 ---
 
-### ⭐6️⃣ Apply vertex-type multipoint constraints  
+### 6️⃣⭐ Apply vertex-type multipoint constraints  
 The six degrees of freedom of each rigid plane will be retained during Craig-Bampton reduction.
 
 ```matlab
@@ -392,7 +392,7 @@ Reduced.C = Reduced.C(dofPerm,:);
 Reduced.C = Reduced.C(:,dofPerm);             % Reduced damping matrix.
 ```
 
-### ⭐🔟 Save variables needed for the full order reconstruction  
+### 🔟⭐ Save variables needed for the full order reconstruction  
 ```matlab
 %% Save variables needed for the full order reconstruction 
 
