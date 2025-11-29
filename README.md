@@ -92,6 +92,10 @@ The overall workflow is as follows:
 2. **Run simulations in Simulink using the “Reduced Order Flexible Solid” block**  
 3. **Reconstruct full-order solutions** from the reduced-order model results
 
+---
+
+## 🌟[Example 1](./Example1.md): Rocking Column with Corner Feet
+
 
 
 
