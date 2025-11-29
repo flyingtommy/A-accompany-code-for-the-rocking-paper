@@ -22,7 +22,7 @@ This modified Craig-Bampton implementation allows you to retain any desired fixe
 ---
 
 
-## 🚩 Step 1: Perform Craig-Bampton Reduction in MATLAB ()
+## 🚩 Step 1: Perform Craig-Bampton Reduction in MATLAB ([Complete code](./Example1_CBReduction.m))
 
 ### 1️⃣ Define structure parameters and common properties  
 ```matlab
