@@ -446,6 +446,11 @@ save(filename,'SimulationMetadata','logsout','xout');   % Save simulation result
 
 ## 🚩 Step 3: Reconstruct the Full Order Solutions
 
+
+
+
+
+
 ```matlab
 filename2 = ['Column-Results-26Modes-' num2str(freqRatio) '-' num2str(AmpRatio) '.mat']; 
 load(filename2);                                    % Load simulation results file.
@@ -486,7 +491,7 @@ DisY = zeros(1,length(time));
 DisZ = zeros(1,length(time));
 
 
-% Break the total time steps into number of segNum pieces so the
+% Break the total time steps into number of segNum pieces, and deal with them one at a time so the
 % post-processing does not consume all the ram.
 
 segNum = 500;                                       
