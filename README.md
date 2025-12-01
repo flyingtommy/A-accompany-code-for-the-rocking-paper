@@ -1,4 +1,4 @@
-# Tutorial: Reduced Order Flexible Solid Modelling for Rocking Problems in Simulink
+# Tutorial: Reduced Order Modelling for Rocking Problems in Simulink
 
 ## 🌟Overview
 This tutorial provides the MATLAB codes, the Simulink models, and the necessary introductions to run the examples presented in the companion paper. Two examples from the companion paper are covered:
